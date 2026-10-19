@@ -1,0 +1,849 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111110">
+  <title>The Biryani Drop | Menu</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Parisienne&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #111110;
+      --panel: #171715;
+      --cream: #eee3c9;
+      --gold: #b88748;
+      --muted: #bdb19a;
+      --line: rgba(184, 135, 72, 0.38);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      position: relative;
+      isolation: isolate;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background:
+        radial-gradient(
+          ellipse at 50% 0%,
+          #29251d 0%,
+          #151513 44%,
+          #10100f 100%
+        );
+      color: var(--cream);
+      font-family: 'Montserrat', Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* Subtle grain texture — safely behind all content */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.075;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 180px 180px;
+    }
+
+    .hero,
+    .menu-wrap,
+    .footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Brand header */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 36px 18px 25px;
+      text-align: center;
+    }
+
+    .frame {
+      width: min(720px, 100%);
+      padding: 16px 18px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .the-script {
+      color: var(--gold);
+      font-family: 'Parisienne', cursive;
+      font-size: clamp(46px, 7vw, 70px);
+      line-height: 0.9;
+      transform: rotate(-8deg);
+    }
+
+    .brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(35px, 5.5vw, 52px);
+      font-weight: 500;
+      line-height: 0.9;
+      letter-spacing: 6px;
+      text-align: left;
+    }
+
+    .brand-ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      width: 112px;
+      margin: 20px auto 0;
+      color: var(--gold);
+    }
+
+    .brand-ornament::before,
+    .brand-ornament::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+    }
+
+    .brand-ornament::before {
+      background: linear-gradient(90deg, transparent, var(--gold));
+    }
+
+    .brand-ornament::after {
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+
+    .brand-ornament span {
+      display: block;
+      width: 6px;
+      height: 6px;
+      border: 1px solid var(--gold);
+      transform: rotate(45deg);
+    }
+
+    .license {
+      margin-top: 17px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      letter-spacing: 0.4px;
+    }
+
+    .license strong {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* Menu layout */
+    .menu-wrap {
+      width: min(700px, 100%);
+      margin: 0 auto;
+      padding: 0 30px 42px;
+    }
+
+    .menu-section {
+      padding: 26px 0 24px;
+      border-bottom: 1px solid rgba(238, 227, 201, 0.10);
+      animation: rise 0.7s both;
+    }
+
+    /* Smaller, more elegant section headings */
+    .menu-section h2 {
+      margin-bottom: 11px;
+      color: var(--cream);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(24px, 3.8vw, 30px);
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: 4px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .menu-section h2 button {
+      all: unset;
+      cursor: pointer;
+      transition: color 0.25s ease;
+    }
+
+    .menu-section h2 button:hover {
+      color: var(--gold);
+    }
+
+    .menu-section h2 button:focus-visible {
+      outline: 1px solid var(--gold);
+      outline-offset: 5px;
+    }
+
+    .menu-section h2::after {
+      content: "+";
+      display: inline-block;
+      margin-left: 10px;
+      color: var(--gold);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      letter-spacing: 0;
+      vertical-align: 3px;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-section.open h2::after {
+      content: "−";
+    }
+
+    .heading-rule {
+      width: 100%;
+      height: 1px;
+      margin-bottom: 18px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--line) 18%,
+        var(--line) 82%,
+        transparent
+      );
+    }
+
+    /* Accordion content */
+    .section-content {
+      height: 0;
+      overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-5px);
+    }
+
+    .menu-section.open .section-content {
+      height: auto;
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .category {
+      margin: 17px 0 22px;
+    }
+
+    .category:last-child {
+      margin-bottom: 0;
+    }
+
+    .category h3 {
+      margin-bottom: 9px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      padding: 4px 0;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.1px;
+    }
+
+    .item-name {
+      min-width: 0;
+      color: var(--cream);
+    }
+
+    .price {
+      flex-shrink: 0;
+      color: var(--gold);
+      white-space: nowrap;
+      font-size: 13px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .single-list .item {
+      padding: 5px 0;
+    }
+
+    .collection-title {
+      margin: 0 0 20px;
+      color: var(--gold);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-align: center;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 28px 18px 42px;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 1px;
+      line-height: 1.9;
+      text-align: center;
+    }
+
+    .footer strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--gold);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      font-weight: 500;
+      letter-spacing: 2px;
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (min-width: 700px) {
+      .menu-wrap {
+        padding-right: 38px;
+        padding-left: 38px;
+      }
+
+      .item,
+      .price {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding-top: 29px;
+        padding-bottom: 18px;
+      }
+
+      .frame {
+        padding-right: 8px;
+        padding-left: 8px;
+      }
+
+      .brand {
+        gap: 7px;
+      }
+
+      .brand-name {
+        font-size: clamp(31px, 8vw, 40px);
+        letter-spacing: 3.5px;
+      }
+
+      .the-script {
+        font-size: clamp(42px, 11vw, 52px);
+      }
+
+      .license {
+        font-size: 14px;
+      }
+
+      .menu-wrap {
+        padding-right: 22px;
+        padding-left: 22px;
+      }
+
+      .menu-section {
+        padding-top: 23px;
+        padding-bottom: 21px;
+      }
+
+      .menu-section h2 {
+        font-size: 23px;
+        letter-spacing: 3px;
+      }
+
+      .heading-rule {
+        margin-bottom: 15px;
+      }
+
+      .category h3 {
+        letter-spacing: 3px;
+      }
+
+      .item {
+        gap: 10px;
+        font-size: 12px;
+      }
+
+      .price {
+        font-size: 12px;
+      }
+
+      .collection-title {
+        font-size: 12px;
+        letter-spacing: 2px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="hero">
+    <div class="frame">
+      <div class="brand">
+        <div class="the-script">The</div>
+        <div class="brand-name">BIRYANI<br>DROP</div>
+      </div>
+
+      <div class="brand-ornament" aria-hidden="true">
+        <span></span>
+      </div>
+
+      <p class="license">
+        FSSAI licence no - <strong>22025056000411</strong>
+      </p>
+    </div>
+  </header>
+
+  <main class="menu-wrap" id="menu">
+
+    <!-- SOUPS -->
+    <section class="menu-section open">
+      <h2>
+        <button type="button" aria-expanded="true">Soups</button>
+      </h2>
+      <div class="heading-rule"></div>
+
+      <div class="section-content">
+        <div class="category">
+          <h3>Veg</h3>
+          <div class="item"><span class="item-name">Veg Hot and Sour</span><span class="price">₹99</span></div>
+          <div class="item"><span class="item-name">Veg Manchow</span><span class="price">₹109</span></div>
+        </div>
+
+        <div class="category">
+          <h3>Non-Veg</h3>
+          <div class="item"><span class="item-name">Chicken Hot and Sour</span><span class="price">₹119</span></div>
+          <div class="item"><span class="item-name">Chicken Manchow</span><span class="price">₹129</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROLLS -->
+    <section class="menu-section open">
+      <h2>
+        <button type="button" aria-expanded="true">Rolls</button>
+      </h2>
+      <div class="heading-rule"></div>
+
+      <div class="section-content">
+        <div class="category">
+          <h3>Veg</h3>
+          <div class="item"><span class="item-name">Veg Roll</span><span class="price">₹59</span></div>
+          <div class="item"><span class="item-name">Paneer Roll</span><span class="price">₹69</span></div>
+          <div class="item"><span class="item-name">Mushroom Roll</span><span class="price">₹69</span></div>
+          <div class="item"><span class="item-name">Mix Veg Roll</span><span class="price">₹79</span></div>
+          <div class="item"><span class="item-name">Paneer 65 Roll</span><span class="price">₹99</span></div>
+          <div class="item"><span class="item-name">Mushroom 65 Roll</span><span class="price">₹99</span></div>
+          <div class="item"><span class="item-name">Chilly Paneer Roll</span><span class="price">₹109</span></div>
+          <div class="item"><span class="item-name">Chilly Mushroom Roll</span><span class="price">₹109</span></div>
+        </div>
+
+        <div class="category">
+          <h3>Non-Veg</h3>
+          <div class="item"><span class="item-name">Single Egg Chicken Roll</span><span class="price">₹79</span></div>
+          <div class="item"><span class="item-name">Double Egg Chicken Roll</span><span class="price">₹89</span></div>
+          <div class="item"><span class="item-name">Chicken 65 Roll</span><span class="price">₹119</span></div>
+          <div class="item"><span class="item-name">Chilly Chicken Roll</span><span class="price">₹119</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STARTERS -->
+    <section class="menu-section">
+      <h2>
+        <button type="button" aria-expanded="false">Starters</button>
+      </h2>
+      <div class="heading-rule"></div>
+
+      <div class="section-content">
+        <div class="category">
+          <h3>Veg</h3>
+          <div class="item"><span class="item-name">Veg Manchurian</span><span class="price">₹99</span></div>
+          <div class="item"><span class="item-name">American Crispy Corn</span><span class="price">₹109</span></div>
+          <div class="item"><span class="item-name">Chilly Gobi</span><span class="price">₹129</span></div>
+          <div class="item"><span class="item-name">Crispy Baby Corn</span><span class="price">₹139</span></div>
+          <div class="item"><span class="item-name">Paneer Pakoda</span><span class="price">₹139</span></div>
+          <div class="item"><span class="item-name">Gobi Manchurian</span><span class="price">₹139</span></div>
+          <div class="item"><span class="item-name">Gobi 65</span><span class="price">₹139</span></div>
+          <div class="item"><span class="item-name">Chilly Mushroom</span><span class="price">₹149</span></div>
+          <div class="item"><span class="item-name">Mushroom Manchurian</span><span class="price">₹149</span></div>
+          <div class="item"><span class="item-name">Mushroom Salt &amp; Pepper</span><span class="price">₹149</span></div>
+          <div class="item"><span class="item-name">Mushroom Chatpati</span><span class="price">₹149</span></div>
+          <div class="item"><span class="item-name">Paneer 65</span><span class="price">₹149</span></div>
+          <div class="item"><span class="item-name">Paneer Manchurian</span><span class="price">₹149</span></div>
+          <div class="item"><span class="item-name">Chilly Paneer</span><span class="price">₹149</span></div>
+          <div class="item"><span class="item-name">Paneer Salt &amp; Pepper</span><span class="price">₹149</span></div>
+          <div class="item"><span class="item-name">Mushroom 65</span><span class="price">₹159</span></div>
+        </div>
+
+        <div class="category">
+          <h3>Non-Veg</h3>
+          <div class="item"><span class="item-name">Chicken Pakoda</span><span class="price">₹99</span></div>
+          <div class="item"><span class="item-name">Chilly Chicken (Boneless)</span><span class="price">₹149</span></div>
+          <div class="item"><span class="item-name">Chicken Manchurian (Boneless)</span><span class="price">₹149</span></div>
+          <div class="item"><span class="item-name">Chicken Lollipop</span><span class="price">₹149</span></div>
+          <div class="item"><span class="item-name">Chicken 65 (Boneless)</span><span class="price">₹159</span></div>
+          <div class="item"><span class="item-name">Hunan Chicken</span><span class="price">₹159</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOODLES -->
+    <section class="menu-section">
+      <h2>
+        <button type="button" aria-expanded="false">Noodles</button>
+      </h2>
+      <div class="heading-rule"></div>
+
+      <div class="section-content">
+        <div class="category">
+          <h3>Veg</h3>
+          <div class="item"><span class="item-name">Veg Noodles</span><span class="price">₹79</span></div>
+          <div class="item"><span class="item-name">Veg Schezwan Noodles</span><span class="price">₹89</span></div>
+          <div class="item"><span class="item-name">Mix Veg Noodles</span><span class="price">₹99</span></div>
+          <div class="item"><span class="item-name">Mix Veg Schezwan Noodles</span><span class="price">₹109</span></div>
+        </div>
+
+        <div class="category">
+          <h3>Non-Veg</h3>
+          <div class="item"><span class="item-name">Egg Chicken Noodles</span><span class="price">₹89</span></div>
+          <div class="item"><span class="item-name">Egg Chicken Schezwan Noodles</span><span class="price">₹109</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RICE & FRIED RICE -->
+    <section class="menu-section">
+      <h2>
+        <button type="button" aria-expanded="false">Rice &amp; Fried Rice</button>
+      </h2>
+      <div class="heading-rule"></div>
+
+      <div class="section-content">
+        <div class="category">
+          <h3>Veg</h3>
+          <div class="item"><span class="item-name">Veg Fried Rice</span><span class="price">₹99</span></div>
+          <div class="item"><span class="item-name">Veg Schezwan Fried Rice</span><span class="price">₹109</span></div>
+          <div class="item"><span class="item-name">Jeera Rice</span><span class="price">₹119</span></div>
+        </div>
+
+        <div class="category">
+          <h3>Non-Veg</h3>
+          <div class="item"><span class="item-name">Egg Fried Rice</span><span class="price">₹119</span></div>
+          <div class="item"><span class="item-name">Egg Schezwan Fried Rice</span><span class="price">₹129</span></div>
+          <div class="item"><span class="item-name">Chicken Fried Rice</span><span class="price">₹139</span></div>
+          <div class="item"><span class="item-name">Chicken Schezwan Fried Rice</span><span class="price">₹149</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SIGNATURE BIRYANI -->
+    <section class="menu-section">
+      <h2>
+        <button type="button" aria-expanded="false">Signature Biryani</button>
+      </h2>
+      <div class="heading-rule"></div>
+
+      <div class="section-content">
+        <p class="collection-title">SIGNATURE BIRYANI COLLECTION</p>
+
+        <div class="category">
+          <h3>Veg</h3>
+          <div class="item"><span class="item-name">Veg Biryani</span><span class="price">₹129</span></div>
+          <div class="item"><span class="item-name">Mushroom Biryani</span><span class="price">₹169</span></div>
+          <div class="item"><span class="item-name">Paneer Biryani</span><span class="price">₹169</span></div>
+        </div>
+
+        <div class="category">
+          <h3>Non-Veg</h3>
+          <div class="item"><span class="item-name">Egg Biryani</span><span class="price">₹129</span></div>
+          <div class="item"><span class="item-name">Chicken Mini Biryani</span><span class="price">₹139</span></div>
+          <div class="item"><span class="item-name">Chicken Biryani</span><span class="price">₹169</span></div>
+          <div class="item"><span class="item-name">Chicken Lollipop Biryani</span><span class="price">₹229</span></div>
+          <div class="item"><span class="item-name">Chicken 65 Biryani</span><span class="price">₹239</span></div>
+          <div class="item"><span class="item-name">Mutton Biryani</span><span class="price">₹259</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EGG SPECIALS -->
+    <section class="menu-section">
+      <h2>
+        <button type="button" aria-expanded="false">Egg Specials</button>
+      </h2>
+      <div class="heading-rule"></div>
+
+      <div class="section-content single-list">
+        <div class="item"><span class="item-name">Egg Omelette</span><span class="price">₹49</span></div>
+        <div class="item"><span class="item-name">Egg Bhurji</span><span class="price">₹69</span></div>
+        <div class="item"><span class="item-name">Egg Masala</span><span class="price">₹109</span></div>
+        <div class="item"><span class="item-name">Egg Bhurj Curry</span><span class="price">₹129</span></div>
+      </div>
+    </section>
+
+    <!-- CURRIES -->
+    <section class="menu-section">
+      <h2>
+        <button type="button" aria-expanded="false">Curries</button>
+      </h2>
+      <div class="heading-rule"></div>
+
+      <div class="section-content">
+        <div class="category">
+          <h3>Veg</h3>
+          <div class="item"><span class="item-name">Mix Veg</span><span class="price">₹129</span></div>
+          <div class="item"><span class="item-name">Veg Hyderabadi</span><span class="price">₹129</span></div>
+          <div class="item"><span class="item-name">Kadhai Veg</span><span class="price">₹139</span></div>
+          <div class="item"><span class="item-name">Paneer Masala</span><span class="price">₹149</span></div>
+          <div class="item"><span class="item-name">Mushroom Masala</span><span class="price">₹149</span></div>
+          <div class="item"><span class="item-name">Paneer Hyderabadi</span><span class="price">₹159</span></div>
+          <div class="item"><span class="item-name">Kadhai Paneer</span><span class="price">₹159</span></div>
+          <div class="item"><span class="item-name">Paneer Dopiyaza</span><span class="price">₹159</span></div>
+          <div class="item"><span class="item-name">Mushroom Hyderabadi</span><span class="price">₹159</span></div>
+          <div class="item"><span class="item-name">Kadhai Mushroom</span><span class="price">₹159</span></div>
+          <div class="item"><span class="item-name">Mushroom Dopiyaza</span><span class="price">₹159</span></div>
+          <div class="item"><span class="item-name">Paneer Butter Masala</span><span class="price">₹169</span></div>
+          <div class="item"><span class="item-name">Mushroom Butter Masala</span><span class="price">₹169</span></div>
+          <div class="item"><span class="item-name">Paneer Bharta</span><span class="price">₹179</span></div>
+          <div class="item"><span class="item-name">Paneer Meethi Chaman</span><span class="price">₹189</span></div>
+        </div>
+
+        <div class="category">
+          <h3>Non-Veg</h3>
+          <div class="item"><span class="item-name">Chicken Masala</span><span class="price">₹149</span></div>
+          <div class="item"><span class="item-name">Chicken Kasa</span><span class="price">₹159</span></div>
+          <div class="item"><span class="item-name">Chicken Hyderabadi</span><span class="price">₹159</span></div>
+          <div class="item"><span class="item-name">Kadhai Chicken</span><span class="price">₹159</span></div>
+          <div class="item"><span class="item-name">Chicken Dopiyaza</span><span class="price">₹159</span></div>
+          <div class="item"><span class="item-name">Chicken Butter Masala</span><span class="price">₹169</span></div>
+          <div class="item"><span class="item-name">Chicken Mughlai</span><span class="price">₹179</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BREADS -->
+    <section class="menu-section">
+      <h2>
+        <button type="button" aria-expanded="false">Breads</button>
+      </h2>
+      <div class="heading-rule"></div>
+
+      <div class="section-content single-list">
+        <div class="item"><span class="item-name">Tawa Roti</span><span class="price">₹7</span></div>
+        <div class="item"><span class="item-name">Tawa Butter Roti</span><span class="price">₹9</span></div>
+        <div class="item"><span class="item-name">Laccha Paratha</span><span class="price">₹39</span></div>
+      </div>
+    </section>
+
+    <!-- DRINKS -->
+    <section class="menu-section">
+      <h2>
+        <button type="button" aria-expanded="false">Drinks</button>
+      </h2>
+      <div class="heading-rule"></div>
+
+      <div class="section-content single-list">
+        <div class="item"><span class="item-name">Mineral Water (Small)</span><span class="price">₹10</span></div>
+        <div class="item"><span class="item-name">Mineral Water (Large)</span><span class="price">₹20</span></div>
+        <div class="item"><span class="item-name">Salty Lime Soda</span><span class="price">₹39</span></div>
+        <div class="item"><span class="item-name">Sweet Lime Soda</span><span class="price">₹39</span></div>
+        <div class="item"><span class="item-name">Masala Cold Drink</span><span class="price">₹49</span></div>
+        <div class="item"><span class="item-name">Sweet &amp; Salty Lime Soda</span><span class="price">₹49</span></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <strong>Where Every Grain Tells a Story</strong>
+    Authentic flavors. Timeless recipes. Unforgettable taste.
+  </footer>
+
+  <script>
+    document.querySelectorAll('.menu-section').forEach((section) => {
+      const button = section.querySelector('h2 button');
+      const content = section.querySelector('.section-content');
+
+      if (!button || !content) return;
+
+      let isOpen = section.classList.contains('open');
+      let animation = null;
+
+      button.setAttribute('aria-expanded', String(isOpen));
+
+      // Set the correct initial state so the open sections are visible.
+      content.style.height = isOpen ? 'auto' : '0px';
+      content.style.opacity = isOpen ? '1' : '0';
+      content.style.visibility = isOpen ? 'visible' : 'hidden';
+      content.style.transform = isOpen ? 'translateY(0)' : 'translateY(-5px)';
+
+      button.addEventListener('click', () => {
+        const opening = !isOpen;
+
+        // Capture the current visual state, allowing quick repeated clicks.
+        const currentHeight = content.getBoundingClientRect().height;
+        const currentOpacity = parseFloat(
+          getComputedStyle(content).opacity
+        ) || 0;
+
+        if (animation) {
+          animation.cancel();
+          animation = null;
+        }
+
+        isOpen = opening;
+        button.setAttribute('aria-expanded', String(opening));
+
+        content.style.visibility = 'visible';
+        content.style.height = currentHeight + 'px';
+        content.style.opacity = String(currentOpacity);
+
+        const reduceMotion = window.matchMedia(
+          '(prefers-reduced-motion: reduce)'
+        ).matches;
+
+        if (opening) {
+          section.classList.add('open');
+
+          // Measure the natural height of the expanded content.
+          content.style.height = 'auto';
+          const targetHeight = content.scrollHeight;
+
+          content.style.height = currentHeight + 'px';
+          content.style.opacity = String(currentOpacity);
+          content.style.transform = 'translateY(-5px)';
+
+          // Commit the starting state before animating.
+          void content.offsetHeight;
+
+          if (reduceMotion) {
+            content.style.height = 'auto';
+            content.style.opacity = '1';
+            content.style.transform = 'translateY(0)';
+            return;
+          }
+
+          animation = content.animate(
+            [
+              {
+                height: currentHeight + 'px',
+                opacity: currentOpacity,
+                transform: 'translateY(-5px)'
+              },
+              {
+                height: targetHeight + 'px',
+                opacity: 1,
+                transform: 'translateY(0)'
+              }
+            ],
+            {
+              duration: 600,
+              easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+              fill: 'forwards'
+            }
+          );
+
+          const openingAnimation = animation;
+
+          openingAnimation.onfinish = () => {
+            if (animation !== openingAnimation || !isOpen) return;
+
+            animation = null;
+            content.style.height = 'auto';
+            content.style.opacity = '1';
+            content.style.transform = 'translateY(0)';
+            openingAnimation.cancel();
+          };
+        } else {
+          section.classList.remove('open');
+
+          if (reduceMotion) {
+            content.style.height = '0px';
+            content.style.opacity = '0';
+            content.style.transform = 'translateY(-5px)';
+            content.style.visibility = 'hidden';
+            return;
+          }
+
+          animation = content.animate(
+            [
+              {
+                height: currentHeight + 'px',
+                opacity: currentOpacity,
+                transform: 'translateY(0)'
+              },
+              {
+                height: '0px',
+                opacity: 0,
+                transform: 'translateY(-5px)'
+              }
+            ],
+            {
+              duration: 420,
+              easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+              fill: 'forwards'
+            }
+          );
+
+          const closingAnimation = animation;
+
+          closingAnimation.onfinish = () => {
+            if (animation !== closingAnimation || isOpen) return;
+
+            animation = null;
+            content.style.height = '0px';
+            content.style.opacity = '0';
+            content.style.transform = 'translateY(-5px)';
+            content.style.visibility = 'hidden';
+            closingAnimation.cancel();
+          };
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
