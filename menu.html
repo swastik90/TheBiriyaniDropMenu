@@ -48,7 +48,7 @@
       line-height: 1.6;
     }
 
-    /* Subtle grain texture — safely behind all content */
+    /* Subtle grain texture */
     body::before {
       content: "";
       position: fixed;
@@ -168,7 +168,7 @@
       animation: rise 0.7s both;
     }
 
-    /* Smaller, more elegant section headings */
+    /* Section headings */
     .menu-section h2 {
       margin-bottom: 11px;
       color: var(--cream);
@@ -251,7 +251,7 @@
     }
 
     .category h3 {
-      margin-bottom: 9px;
+      margin-bottom: 12px;
       color: var(--muted);
       font-size: 10px;
       font-weight: 400;
@@ -259,20 +259,24 @@
       text-transform: uppercase;
     }
 
+    /* Increased spacing between item names and prices */
     .item {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
-      gap: 16px;
-      padding: 4px 0;
+      align-items: center;
+      gap: 20px;
+      padding: 9px 0;
       font-size: 13px;
       font-weight: 400;
       letter-spacing: 0.1px;
+      line-height: 1.5;
     }
 
     .item-name {
       min-width: 0;
+      flex: 1;
       color: var(--cream);
+      overflow-wrap: break-word;
     }
 
     .price {
@@ -281,10 +285,11 @@
       white-space: nowrap;
       font-size: 13px;
       font-variant-numeric: tabular-nums;
+      text-align: right;
     }
 
     .single-list .item {
-      padding: 5px 0;
+      padding: 9px 0;
     }
 
     .collection-title {
@@ -389,15 +394,23 @@
 
       .category h3 {
         letter-spacing: 3px;
+        margin-bottom: 11px;
       }
 
+      /* Comfortable spacing on smaller screens */
       .item {
-        gap: 10px;
+        gap: 12px;
+        padding: 8px 0;
         font-size: 12px;
+        line-height: 1.5;
       }
 
       .price {
         font-size: 12px;
+      }
+
+      .single-list .item {
+        padding: 8px 0;
       }
 
       .collection-title {
@@ -432,7 +445,7 @@
       </div>
 
       <p class="license">
-        FSSAI licence no - <strong>22025056000411</strong>
+        FSSAI Licence No. <strong>22025056000411</strong>
       </p>
     </div>
   </header>
@@ -441,18 +454,14 @@
 
     <!-- SOUPS -->
     <section class="menu-section open">
-      <h2>
-        <button type="button" aria-expanded="true">Soups</button>
-      </h2>
+      <h2><button type="button" aria-expanded="true">Soups</button></h2>
       <div class="heading-rule"></div>
-
       <div class="section-content">
         <div class="category">
           <h3>Veg</h3>
           <div class="item"><span class="item-name">Veg Hot and Sour</span><span class="price">₹99</span></div>
           <div class="item"><span class="item-name">Veg Manchow</span><span class="price">₹109</span></div>
         </div>
-
         <div class="category">
           <h3>Non-Veg</h3>
           <div class="item"><span class="item-name">Chicken Hot and Sour</span><span class="price">₹119</span></div>
@@ -463,11 +472,8 @@
 
     <!-- ROLLS -->
     <section class="menu-section open">
-      <h2>
-        <button type="button" aria-expanded="true">Rolls</button>
-      </h2>
+      <h2><button type="button" aria-expanded="true">Rolls</button></h2>
       <div class="heading-rule"></div>
-
       <div class="section-content">
         <div class="category">
           <h3>Veg</h3>
@@ -480,7 +486,6 @@
           <div class="item"><span class="item-name">Chilly Paneer Roll</span><span class="price">₹109</span></div>
           <div class="item"><span class="item-name">Chilly Mushroom Roll</span><span class="price">₹109</span></div>
         </div>
-
         <div class="category">
           <h3>Non-Veg</h3>
           <div class="item"><span class="item-name">Single Egg Chicken Roll</span><span class="price">₹79</span></div>
@@ -493,11 +498,8 @@
 
     <!-- STARTERS -->
     <section class="menu-section">
-      <h2>
-        <button type="button" aria-expanded="false">Starters</button>
-      </h2>
+      <h2><button type="button" aria-expanded="false">Starters</button></h2>
       <div class="heading-rule"></div>
-
       <div class="section-content">
         <div class="category">
           <h3>Veg</h3>
@@ -518,7 +520,6 @@
           <div class="item"><span class="item-name">Paneer Salt &amp; Pepper</span><span class="price">₹149</span></div>
           <div class="item"><span class="item-name">Mushroom 65</span><span class="price">₹159</span></div>
         </div>
-
         <div class="category">
           <h3>Non-Veg</h3>
           <div class="item"><span class="item-name">Chicken Pakoda</span><span class="price">₹99</span></div>
@@ -533,11 +534,8 @@
 
     <!-- NOODLES -->
     <section class="menu-section">
-      <h2>
-        <button type="button" aria-expanded="false">Noodles</button>
-      </h2>
+      <h2><button type="button" aria-expanded="false">Noodles</button></h2>
       <div class="heading-rule"></div>
-
       <div class="section-content">
         <div class="category">
           <h3>Veg</h3>
@@ -546,7 +544,6 @@
           <div class="item"><span class="item-name">Mix Veg Noodles</span><span class="price">₹99</span></div>
           <div class="item"><span class="item-name">Mix Veg Schezwan Noodles</span><span class="price">₹109</span></div>
         </div>
-
         <div class="category">
           <h3>Non-Veg</h3>
           <div class="item"><span class="item-name">Egg Chicken Noodles</span><span class="price">₹89</span></div>
@@ -557,11 +554,8 @@
 
     <!-- RICE & FRIED RICE -->
     <section class="menu-section">
-      <h2>
-        <button type="button" aria-expanded="false">Rice &amp; Fried Rice</button>
-      </h2>
+      <h2><button type="button" aria-expanded="false">Rice &amp; Fried Rice</button></h2>
       <div class="heading-rule"></div>
-
       <div class="section-content">
         <div class="category">
           <h3>Veg</h3>
@@ -569,7 +563,6 @@
           <div class="item"><span class="item-name">Veg Schezwan Fried Rice</span><span class="price">₹109</span></div>
           <div class="item"><span class="item-name">Jeera Rice</span><span class="price">₹119</span></div>
         </div>
-
         <div class="category">
           <h3>Non-Veg</h3>
           <div class="item"><span class="item-name">Egg Fried Rice</span><span class="price">₹119</span></div>
@@ -582,21 +575,16 @@
 
     <!-- SIGNATURE BIRYANI -->
     <section class="menu-section">
-      <h2>
-        <button type="button" aria-expanded="false">Signature Biryani</button>
-      </h2>
+      <h2><button type="button" aria-expanded="false">Signature Biryani</button></h2>
       <div class="heading-rule"></div>
-
       <div class="section-content">
         <p class="collection-title">SIGNATURE BIRYANI COLLECTION</p>
-
         <div class="category">
           <h3>Veg</h3>
           <div class="item"><span class="item-name">Veg Biryani</span><span class="price">₹129</span></div>
           <div class="item"><span class="item-name">Mushroom Biryani</span><span class="price">₹169</span></div>
           <div class="item"><span class="item-name">Paneer Biryani</span><span class="price">₹169</span></div>
         </div>
-
         <div class="category">
           <h3>Non-Veg</h3>
           <div class="item"><span class="item-name">Egg Biryani</span><span class="price">₹129</span></div>
@@ -611,11 +599,8 @@
 
     <!-- EGG SPECIALS -->
     <section class="menu-section">
-      <h2>
-        <button type="button" aria-expanded="false">Egg Specials</button>
-      </h2>
+      <h2><button type="button" aria-expanded="false">Egg Specials</button></h2>
       <div class="heading-rule"></div>
-
       <div class="section-content single-list">
         <div class="item"><span class="item-name">Egg Omelette</span><span class="price">₹49</span></div>
         <div class="item"><span class="item-name">Egg Bhurji</span><span class="price">₹69</span></div>
@@ -626,11 +611,8 @@
 
     <!-- CURRIES -->
     <section class="menu-section">
-      <h2>
-        <button type="button" aria-expanded="false">Curries</button>
-      </h2>
+      <h2><button type="button" aria-expanded="false">Curries</button></h2>
       <div class="heading-rule"></div>
-
       <div class="section-content">
         <div class="category">
           <h3>Veg</h3>
@@ -650,7 +632,6 @@
           <div class="item"><span class="item-name">Paneer Bharta</span><span class="price">₹179</span></div>
           <div class="item"><span class="item-name">Paneer Meethi Chaman</span><span class="price">₹189</span></div>
         </div>
-
         <div class="category">
           <h3>Non-Veg</h3>
           <div class="item"><span class="item-name">Chicken Masala</span><span class="price">₹149</span></div>
@@ -666,11 +647,8 @@
 
     <!-- BREADS -->
     <section class="menu-section">
-      <h2>
-        <button type="button" aria-expanded="false">Breads</button>
-      </h2>
+      <h2><button type="button" aria-expanded="false">Breads</button></h2>
       <div class="heading-rule"></div>
-
       <div class="section-content single-list">
         <div class="item"><span class="item-name">Tawa Roti</span><span class="price">₹7</span></div>
         <div class="item"><span class="item-name">Tawa Butter Roti</span><span class="price">₹9</span></div>
@@ -680,11 +658,8 @@
 
     <!-- DRINKS -->
     <section class="menu-section">
-      <h2>
-        <button type="button" aria-expanded="false">Drinks</button>
-      </h2>
+      <h2><button type="button" aria-expanded="false">Drinks</button></h2>
       <div class="heading-rule"></div>
-
       <div class="section-content single-list">
         <div class="item"><span class="item-name">Mineral Water (Small)</span><span class="price">₹10</span></div>
         <div class="item"><span class="item-name">Mineral Water (Large)</span><span class="price">₹20</span></div>
@@ -700,6 +675,11 @@
   <footer class="footer">
     <strong>Where Every Grain Tells a Story</strong>
     Authentic flavors. Timeless recipes. Unforgettable taste.
+    <p style="margin-top: 18px;">
+      <a href="index.html" style="color: var(--gold); text-decoration: none; letter-spacing: 2px;">
+        ← BACK TO HOME
+      </a>
+    </p>
   </footer>
 
   <script>
@@ -714,20 +694,18 @@
 
       button.setAttribute('aria-expanded', String(isOpen));
 
-      // Set the correct initial state so the open sections are visible.
       content.style.height = isOpen ? 'auto' : '0px';
       content.style.opacity = isOpen ? '1' : '0';
       content.style.visibility = isOpen ? 'visible' : 'hidden';
-      content.style.transform = isOpen ? 'translateY(0)' : 'translateY(-5px)';
+      content.style.transform = isOpen
+        ? 'translateY(0)'
+        : 'translateY(-5px)';
 
       button.addEventListener('click', () => {
         const opening = !isOpen;
-
-        // Capture the current visual state, allowing quick repeated clicks.
         const currentHeight = content.getBoundingClientRect().height;
-        const currentOpacity = parseFloat(
-          getComputedStyle(content).opacity
-        ) || 0;
+        const currentOpacity =
+          parseFloat(getComputedStyle(content).opacity) || 0;
 
         if (animation) {
           animation.cancel();
@@ -748,7 +726,6 @@
         if (opening) {
           section.classList.add('open');
 
-          // Measure the natural height of the expanded content.
           content.style.height = 'auto';
           const targetHeight = content.scrollHeight;
 
@@ -756,7 +733,6 @@
           content.style.opacity = String(currentOpacity);
           content.style.transform = 'translateY(-5px)';
 
-          // Commit the starting state before animating.
           void content.offsetHeight;
 
           if (reduceMotion) {
