@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#111110">
+  <meta name="description" content="Welcome to The Biryani Drop. Discover signature biryanis, authentic flavours, and delicious favourites.">
   <title>The Biryani Drop | Signature</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,14 +27,21 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       min-height: 100vh;
       min-height: 100svh;
-      overflow: hidden;
+      overflow-x: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 24px;
+      position: relative;
+      isolation: isolate;
+
       background:
         radial-gradient(
           ellipse at 50% 38%,
@@ -41,12 +49,12 @@
           #171715 44%,
           #10100f 100%
         );
+
       color: var(--cream);
-      font-family: 'Montserrat', sans-serif;
-      position: relative;
-      isolation: isolate;
+      font-family: 'Montserrat', Arial, sans-serif;
     }
 
+    /* Subtle background grain */
     body::before {
       content: "";
       position: fixed;
@@ -54,25 +62,34 @@
       z-index: -1;
       pointer-events: none;
       opacity: 0.075;
+
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E");
+
+      background-repeat: repeat;
       background-size: 180px 180px;
     }
 
+    /* Main landing page */
     .landing {
       width: min(560px, 100%);
+      padding: 38px 20px;
       text-align: center;
-      padding: 48px 20px;
       animation: appear 1s ease both;
     }
 
+    /* Decorative ornament */
     .top-ornament {
       width: 76px;
       height: 1px;
       margin: 0 auto 35px;
-      background: linear-gradient(
-        90deg, transparent, var(--gold), transparent
-      );
       position: relative;
+
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--gold),
+        transparent
+      );
     }
 
     .top-ornament::after {
@@ -87,12 +104,12 @@
       transform: translate(-50%, -50%) rotate(45deg);
     }
 
+    /* Brand lettering */
     .brand {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 9px;
-      margin-bottom: 20px;
     }
 
     .the-script {
@@ -112,51 +129,90 @@
       text-align: left;
     }
 
-    .tagline {
+    /* Welcome message */
+    .welcome {
       margin-top: 30px;
-      color: var(--muted);
+      color: var(--cream);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(23px, 5vw, 30px);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      line-height: 1.25;
+    }
+
+    /* Brand tagline */
+    .tagline {
+      margin-top: 10px;
+      color: var(--gold);
       font-family: 'Cormorant Garamond', serif;
       font-size: 18px;
       font-style: italic;
-      letter-spacing: 1.5px;
+      letter-spacing: 1px;
+      line-height: 1.5;
     }
 
+    /* Supporting welcome text */
+    .welcome-note {
+      max-width: 360px;
+      margin: 15px auto 0;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 300;
+      line-height: 1.9;
+      letter-spacing: 0.5px;
+    }
+
+    /* Divider */
     .divider {
       width: 140px;
       height: 1px;
       margin: 25px auto;
+
       background: linear-gradient(
-        90deg, transparent, var(--line), transparent
+        90deg,
+        transparent,
+        var(--line),
+        transparent
       );
     }
 
+    /* FSSAI licence */
     .license {
       color: var(--muted);
       font-family: 'Cormorant Garamond', serif;
       font-size: 15px;
       letter-spacing: 0.5px;
+      line-height: 1.7;
     }
 
     .license strong {
       color: var(--gold);
       font-weight: 600;
+      white-space: nowrap;
     }
 
+    /* View menu button */
     .menu-link {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 17px;
+
       min-width: 210px;
-      margin-top: 43px;
+      min-height: 52px;
+      margin-top: 38px;
       padding: 15px 27px;
+
       border: 1px solid var(--gold);
-      color: var(--cream);
       background: rgba(184, 135, 72, 0.04);
-      text-decoration: none;
+      color: var(--cream);
+
+      font-family: 'Montserrat', sans-serif;
       font-size: 11px;
       font-weight: 500;
       letter-spacing: 3px;
+      text-decoration: none;
+
       transition:
         background 0.3s ease,
         color 0.3s ease,
@@ -168,7 +224,9 @@
       color: var(--gold);
       font-size: 18px;
       line-height: 1;
-      transition: transform 0.3s ease;
+      transition:
+        color 0.3s ease,
+        transform 0.3s ease;
     }
 
     .menu-link:hover {
@@ -188,11 +246,13 @@
       outline-offset: 5px;
     }
 
+    /* Bottom text */
     .bottom-note {
-      margin-top: 57px;
+      margin-top: 48px;
       color: rgba(189, 177, 154, 0.65);
       font-size: 9px;
       letter-spacing: 2px;
+      line-height: 1.8;
       text-transform: uppercase;
     }
 
@@ -201,36 +261,105 @@
         opacity: 0;
         transform: translateY(12px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
 
+    /* Mobile responsiveness */
     @media (max-width: 480px) {
+      body {
+        padding: 18px;
+      }
+
       .landing {
-        padding: 30px 5px;
+        padding: 28px 5px;
+      }
+
+      .top-ornament {
+        margin-bottom: 30px;
+      }
+
+      .brand {
+        gap: 7px;
       }
 
       .brand-name {
+        font-size: clamp(31px, 8vw, 40px);
         letter-spacing: 3px;
+      }
+
+      .the-script {
+        font-size: clamp(42px, 11vw, 52px);
+      }
+
+      .welcome {
+        margin-top: 28px;
+        font-size: clamp(23px, 6vw, 28px);
       }
 
       .tagline {
         font-size: 16px;
       }
 
+      .welcome-note {
+        max-width: 310px;
+        font-size: 10px;
+      }
+
+      .license {
+        font-size: 14px;
+      }
+
       .menu-link {
-        margin-top: 35px;
+        margin-top: 32px;
       }
 
       .bottom-note {
-        margin-top: 45px;
+        margin-top: 38px;
+        font-size: 8px;
+        letter-spacing: 1.5px;
+      }
+    }
+
+    @media (max-height: 650px) {
+      .landing {
+        padding-top: 18px;
+        padding-bottom: 18px;
+      }
+
+      .top-ornament {
+        margin-bottom: 22px;
+      }
+
+      .welcome {
+        margin-top: 20px;
+      }
+
+      .welcome-note {
+        margin-top: 10px;
+      }
+
+      .divider {
+        margin: 17px auto;
+      }
+
+      .menu-link {
+        margin-top: 24px;
+      }
+
+      .bottom-note {
+        margin-top: 25px;
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
         animation: none !important;
         transition: none !important;
       }
@@ -239,7 +368,9 @@
 </head>
 
 <body>
+
   <main class="landing">
+
     <div class="top-ornament" aria-hidden="true"></div>
 
     <div class="brand">
@@ -247,12 +378,24 @@
       <div class="brand-name">BIRYANI<br>DROP</div>
     </div>
 
-    <p class="tagline">Where Every Grain Tells a Story</p>
+    <p class="welcome">
+      Welcome to The Biryani Drop
+    </p>
+
+    <p class="tagline">
+      Where Every Grain Tells a Story
+    </p>
+
+    <p class="welcome-note">
+      A warm welcome to a world of flavour,
+      crafted with love and served with passion.
+    </p>
 
     <div class="divider" aria-hidden="true"></div>
 
     <p class="license">
-      FSSAI Licence No. <strong>22025056000411</strong>
+      FSSAI Licence No.
+      <strong>22025056000411</strong>
     </p>
 
     <a class="menu-link" href="menu.html">
@@ -260,7 +403,11 @@
       <span class="arrow" aria-hidden="true">→</span>
     </a>
 
-    <p class="bottom-note">Authentic flavours · Timeless recipes</p>
+    <p class="bottom-note">
+      Authentic Flavours &middot; Timeless Recipes
+    </p>
+
   </main>
+
 </body>
 </html>
